@@ -1,0 +1,10 @@
+Reporte de Inventario de BeautyShop
+***********************************
+ID: 1, Crema Antiarrugas (Belleza) - Precio: $25.5 - Stock: 150 unidades
+ID: 2, Shampoo Voluminizador (Cabello) - Precio: $12.99 - Stock: 100 unidades
+ID: 3, Maquillaje Líquido (Maquillaje) - Precio: $18.0 - Stock: 80 unidades
+ID: 4, Perfume Floral (Fragancias) - Precio: $45.0 - Stock: 50 unidades
+ID: 5, Láser Depilación (Cuidado Personal) - Precio: $120.0 - Stock: 30 unidades
+ID: 6, Blush (Maquillaje) - Precio: $10.0 - Stock: 20 unidades
+***********************************
+Valor Total del Inventario: $12614.0

@@ -1,0 +1,6 @@
+1,Crema Antiarrugas,Belleza,25.5,150,Creama hidratante para la piel madura
+2,Shampoo Voluminizador,Cabello,12.99,100,Shampoo para todo tipo de cabello
+3,Maquillaje Líquido,Maquillaje,18.0,80,Base de maquillaje líquida
+4,Perfume Floral,Fragancias,45.0,50,Perfume con fragancia floral
+5,Láser Depilación,Cuidado Personal,120.0,30,Depilación láser en casa
+6,Blush,Maquillaje,10.0,20, es un producto de maquillaje que se utiliza para agregar un toque de color a las mejillas
