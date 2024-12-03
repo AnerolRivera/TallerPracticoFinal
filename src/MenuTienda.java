@@ -68,29 +68,90 @@ public class MenuTienda {
     private void agregarProducto() {
         System.out.print("Ingrese el Nombre del producto: ");
         String nombre = scanner.nextLine();
+
         System.out.print("Ingrese la Categoría: ");
         String categoria = scanner.nextLine();
-        System.out.print("Ingrese ek Precio: ");
-        double precio = scanner.nextDouble();
-        System.out.print("Ingrese la Cantidad: ");
-        int cantidad = scanner.nextInt();
+
+        double precio = obtenerDoubleValido();  // Validación para el precio
+        int cantidad = obtenerEnteroValido();  // Validación para la cantidad
+
         scanner.nextLine();  // Limpiar el buffer
         System.out.print("Ingrese la Descripción: ");
         String descripcion = scanner.nextLine();
 
+        int id = obtenerIdUnico(); // Verificación de ID único
 
-        int id = inventario.getProductos().size() + 1;  // Generar un ID automático
         Producto producto = new Producto(id, nombre, categoria, precio, cantidad, descripcion);
         inventario.agregarProducto(producto);
         inventario.guardarProductosEnArchivo(RUTA_ARCHIVO);
         System.out.println("El Producto fue agregado exitosamente.");
     }
 
+    // Validar que el precio sea un número decimal válido
+    private double obtenerDoubleValido() {
+        while (true) {
+            try {
+                System.out.print("Ingrese el Precio del producto: ");
+                return Double.parseDouble(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("¡Error! Por favor ingrese un número válido para el precio.");
+            }
+        }
+    }
+
+    // Validar que la cantidad sea un número entero válido
+    private int obtenerEnteroValido() {
+        while (true) {
+            try {
+                System.out.print("Ingrese la Cantidad del producto: ");
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("¡Error! Por favor ingrese un número entero válido para la cantidad.");
+            }
+        }
+    }
+
+    // Método para verificar si el ID ingresado ya existe en el inventario
+    private boolean productoExiste(int id) {
+        for (Producto producto : inventario.getProductos()) {
+            if (producto.getId() == id) {
+                return true;  // El ID ya existe
+            }
+        }
+        return false;  // El ID es único
+    }
+
+    // Pedir un ID único para el producto
+    private int obtenerIdUnico() {
+        int id;
+        while (true) {
+            System.out.print("Ingrese el ID del producto (debe ser único): ");
+            id = scanner.nextInt();
+            scanner.nextLine();  // Limpiar el buffer
+
+            // Verificar si el ID ya existe
+            if (!productoExiste(id)) {
+                return id;  // Si el ID no existe, lo devolvemos
+            } else {
+                System.out.println("El ID ingresado ya existe. Por favor ingrese otro ID.");
+            }
+        }
+    }
+
     private void actualizarProducto() {
+        // Pedimos al usuario que ingrese el ID del producto que desea actualizar
         System.out.print("Ingrese el ID del producto que desea actualizar: ");
         int id = scanner.nextInt();
-        scanner.nextLine();  // Limpiar el buffer
+        scanner.nextLine();  // Limpiar el buffer de entrada
 
+        // Verificamos si el producto con ese ID existe en el inventario
+        Producto productoExistente = inventario.buscarProductoPorId(id);
+        if (productoExistente == null) {  // Si el producto no existe
+            System.out.println("El producto con ID " + id + " no existe.");
+            return;  // Terminamos la función sin pedir más datos
+        }
+
+        // Si el producto existe, pedimos los nuevos datos
         System.out.print("Ingrese el Nuevo nombre: ");
         String nombre = scanner.nextLine();
         System.out.print("Ingrese la Nueva categoría: ");
@@ -103,13 +164,15 @@ public class MenuTienda {
         System.out.print("Ingrese la Nueva descripción: ");
         String descripcion = scanner.nextLine();
 
-
+        // Intentamos actualizar el producto en el inventario
         boolean actualizado = inventario.actualizarProducto(id, nombre, categoria, precio, cantidad, descripcion);
         if (actualizado) {
+            // Si la actualización fue exitosa, guardamos los productos en el archivo
             inventario.guardarProductosEnArchivo(RUTA_ARCHIVO);
             System.out.println("El Producto fue actualizado exitosamente.");
         } else {
-            System.out.println("El Producto no existe.");
+            // Si por alguna razón no se pudo actualizar, mostramos un mensaje de error
+            System.out.println("Error al actualizar el producto.");
         }
     }
 

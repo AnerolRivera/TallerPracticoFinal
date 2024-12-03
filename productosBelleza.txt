@@ -4,3 +4,4 @@
 4,Perfume Floral,Fragancias,45.0,50,Perfume con fragancia floral
 5,Láser Depilación,Cuidado Personal,120.0,30,Depilación láser en casa
 6,Blush,Maquillaje,10.0,20, es un producto de maquillaje que se utiliza para agregar un toque de color a las mejillas
+7,Prueba,2,2.0,2,2

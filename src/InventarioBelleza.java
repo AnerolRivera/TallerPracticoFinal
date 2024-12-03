@@ -8,7 +8,7 @@ public class InventarioBelleza {
     public InventarioBelleza() {
         this.productos = new ArrayList<>();
     }
-    // Métodopúblico para obtener la lista de productos
+    //  obtener la lista de productos
     public List<Producto> getProductos() {
         return productos;
     }
